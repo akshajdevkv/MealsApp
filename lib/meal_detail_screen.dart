@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import './dummy_data.dart';
 
 class MealDetailScreen extends StatefulWidget {
+  final Function toggleFavourite;
+  final Function isMealFavourite;
+  MealDetailScreen({this.toggleFavourite,this.isMealFavourite});
   @override
   _MealDetailScreenState createState() => _MealDetailScreenState();
 }
@@ -59,14 +62,11 @@ class _MealDetailScreenState extends State<MealDetailScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            print(selectedMeal.isFavourite);
-            selectedMeal.isFavourite = !selectedMeal.isFavourite;
-          });
-        },
-        child: Icon(selectedMeal.isFavourite ? Icons.star : Icons.star_border),
-      ),
+        child: Icon(
+          widget.isMealFavourite(selectedMeal.id) ? Icons.star : Icons.star_border,
+        ),
+        onPressed: () =>widget.toggleFavourite(selectedMeal.id),),
+      
     );
   }
 }

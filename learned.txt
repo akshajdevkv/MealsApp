@@ -1,0 +1,9 @@
+Navigation - pushing page,popping page , replacing page 
+Navigation - passing data via arguments (dictionaries) to children pages
+Navigation - passing data back to page via Navigatior.pop(context,yourdataanydatatype) and also passing data back when going back using Navifator.push(blablabla).then((value) => whatto do after coming back)
+adding items of specific category like favourites,saved,friends list
+Switches
+Drawers
+Tabs
+Bottom Navigation bar
+Storing data in a class

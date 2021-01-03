@@ -32,7 +32,7 @@ class Meal {
   @required
   final bool isLactoseFree;
   @required
-  bool isFavourite;
+  final isFavourite;
   @required
   final bool isVegetarian;
   @required
@@ -40,7 +40,7 @@ class Meal {
   @required
   final Affordability affordability;
 
-  Meal({
+const Meal({
     this.categories,
     this.duration,
     this.imageUrl,

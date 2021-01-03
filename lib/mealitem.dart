@@ -9,6 +9,7 @@ class MealItem extends StatelessWidget {
   final Complexity complexity;
   final Affordability affordability;
   final Function removeItem;
+  final Function refresh;
   MealItem(
       {this.id,
       this.duration,
@@ -16,17 +17,18 @@ class MealItem extends StatelessWidget {
       this.title,
       this.affordability,
       this.complexity,
-      this.removeItem});
+      this.removeItem,
+      this.refresh});
   void selectMeal(BuildContext context) {
     Navigator.of(context)
         .pushNamed(
       '/meal-detail-screen',
       arguments: id,
-    )
-        .then((value) {
-      if (value) {
-        removeItem(value);
-      }
+    ).then((value){
+      if (refresh != null){
+        print("back to favourites!");
+        refresh();
+      }      
     });
   }
 

@@ -1,46 +1,47 @@
-import 'package:MealsApp/meal.dart';
+
 import 'package:flutter/material.dart';
-import './dummy_data.dart';
 import './mealitem.dart';
 
-class Favorites extends StatefulWidget {
+class Favourites extends StatefulWidget {
+  final List favouriteMeals;
+  Favourites(this.favouriteMeals);
+
   @override
-  FavoritesState createState() => FavoritesState();
+  _FavouritesState createState() => _FavouritesState();
 }
 
-class FavoritesState extends State<Favorites> {
+class _FavouritesState extends State<Favourites> {
+
+  void refreshPage(){
+    setState(() {
+      print("page refreshed!");
+    });
+  }
   @override
   Widget build(BuildContext context) {
-    List<Meal> meals =
-        DUMMY_MEALS.where((item) => item.isFavourite == true).toList();
-    return Column(
-      children: [
-        GestureDetector(
-          onTap: () {
-            // setState(() {
-            //   print(DUMMY_MEALS
-            //       .map((e) => "title:${e.title} and favourite:${e.isFavourite}")
-            //       .toList());
-            // });
-          },
-          child: Text("Updater"),
-        ),
-        Expanded(
-          child: ListView.builder(
-            itemCount: meals.length,
-            itemBuilder: (context, index) {
-              return MealItem(
-                id: meals[index].id,
-                title: meals[index].title,
-                imageUrl: meals[index].imageUrl,
-                duration: meals[index].duration,
-                affordability: meals[index].affordability,
-                complexity: meals[index].complexity,
-              );
-            },
-          ),
-        ),
-      ],
+    if (widget.favouriteMeals.isEmpty){
+      return Center(
+      child: Text("Favourites!"),      
     );
+
+    }
+    else{
+      return ListView.builder(
+          itemCount: widget.favouriteMeals.length,
+          itemBuilder: (context, index) {
+            return MealItem(
+              id: widget.favouriteMeals[index].id,
+              title: widget.favouriteMeals[index].title,
+              imageUrl: widget.favouriteMeals[index].imageUrl,
+              duration: widget.favouriteMeals[index].duration,
+              affordability: widget.favouriteMeals[index].affordability,
+              complexity: widget.favouriteMeals[index].complexity,
+              refresh: refreshPage,       
+            );
+          },
+        );
+
+    }
+    
   }
 }

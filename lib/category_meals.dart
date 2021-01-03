@@ -42,6 +42,7 @@ class _CategoryMealsScreenState extends State<CategoryMealsScreen> {
               removeItem: removeMeal,
             );
           },
-        ));
+        ),
+        );
   }
 }
